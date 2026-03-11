@@ -1,0 +1,356 @@
+{
+  "beginRendering": {
+    "surfaceId": "default",
+    "root": "root-column",
+    "styles": {
+      "primaryColor": "#FF0000",
+      "font": "Roboto"
+    }
+  },
+  "surfaceUpdate": {
+    "surfaceId": "default",
+    "components": [
+      {
+        "id": "root-column",
+        "component": {
+          "Column": {
+            "children": {
+              "explicitList": [
+                "page-title",
+                "card-container"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "page-title",
+        "component": {
+          "Title": {
+            "level": 1,
+            "dataBinding": {
+              "title": "/page-title/title",
+              "style": "/page-title/style"
+            }
+          }
+        }
+      },
+      {
+        "id": "card-container",
+        "component": {
+          "Card": {
+            "dataBinding": {
+              "title": "/card-container/title",
+              "style": "/card-container/style"
+            },
+            "children": [
+              "custom-chart"
+            ]
+          }
+        }
+      },
+      {
+        "id": "custom-chart",
+        "component": {
+          "CustomChart": {
+            "chartType": "line",
+            "option": {
+              "xAxis": {
+                "type": "category"
+              },
+              "yAxis": {
+                "type": "value",
+                "name": "销售额(万元)"
+              },
+              "series": [],
+              "title": {},
+              "tooltip": {},
+              "legend": {}
+            },
+            "smooth": true,
+            "showLegend": true,
+            "style": {
+              "width": "800px",
+              "height": "400px"
+            },
+            "dataBinding": {
+              "resultData": [
+                "/custom-chart/resultData"
+              ],
+              "legend": [
+                "/custom-chart/legend/dim"
+              ],
+              "xAxis": [
+                "/custom-chart/xAxis/dim"
+              ],
+              "yAxis": [
+                "/custom-chart/yAxis/measure"
+              ]
+            },
+            "action": {
+              "name": "chartClick",
+              "context": [
+                {
+                  "key": "chartType",
+                  "value": {
+                    "literalString": "line"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+  },
+  "dataModelUpdate": {
+    "surfaceId": "default",
+    "path": "/",
+    "contents": [
+      {
+        "key": "page-title",
+        "valueMap": [
+          {
+            "key": "title",
+            "valueString": "2025 财务季度核心指标"
+          },
+          {
+            "key": "style",
+            "valueString": "margin: 10px auto; width: 90%"
+          }
+        ]
+      },
+      {
+        "key": "card-container",
+        "valueMap": [
+          {
+            "key": "title",
+            "valueString": "月度营业收入走势 (Actual vs Budget)"
+          },
+          {
+            "key": "style",
+            "valueString": "width: 90%; margin: 0 auto; padding: 20px; border-radius: 8px; border: 1px solid red; box-shadow: 0 2px 12px rgba(0,0,0,0.1)"
+          }
+        ]
+      },
+      {
+        "key": "custom-chart",
+        "valueMap": [
+          {
+            "key": "chartType",
+            "valueString": "line"
+          },
+          {
+            "key": "option",
+            "valueMap": [
+              {
+                "key": "xAxis",
+                "valueMap": [
+                  {
+                    "key": "type",
+                    "valueString": "category"
+                  }
+                ]
+              },
+              {
+                "key": "yAxis",
+                "valueMap": [
+                  {
+                    "key": "type",
+                    "valueString": "value"
+                  },
+                  {
+                    "key": "name",
+                    "valueString": "销售额(万元)"
+                  }
+                ]
+              },
+              {
+                "key": "series",
+                "valueList": []
+              },
+              {
+                "key": "title",
+                "valueMap": [
+                  {
+                    "key": "text",
+                    "valueString": "销售额"
+                  }
+                ]
+              },
+              {
+                "key": "tooltip",
+                "valueMap": []
+              },
+              {
+                "key": "legend",
+                "valueMap": []
+              }
+            ]
+          },
+          {
+            "key": "style",
+            "valueMap": [
+              {
+                "key": "width",
+                "valueString": "100%"
+              },
+              {
+                "key": "height",
+                "valueString": "400px"
+              }
+            ]
+          },
+          {
+            "key": "resultData",
+            "valueList": [
+              {
+                "key": "0",
+                "valueJson": {
+                  "情景": "62",
+                  "营业收入": 120,
+                  "月份": "1月"
+                }
+              },
+              {
+                "key": "1",
+                "valueJson": {
+                  "情景": "61",
+                  "营业收入": 100,
+                  "月份": "1月"
+                }
+              },
+              {
+                "key": "2",
+                "valueJson": {
+                  "情景": "62",
+                  "营业收入": 130,
+                  "月份": "2月"
+                }
+              },
+              {
+                "key": "3",
+                "valueJson": {
+                  "情景": "61",
+                  "营业收入": 150,
+                  "月份": "2月"
+                }
+              },
+              {
+                "key": "4",
+                "valueJson": {
+                  "情景": "62",
+                  "营业收入": 100,
+                  "月份": "3月"
+                }
+              },
+              {
+                "key": "5",
+                "valueJson": {
+                  "情景": "61",
+                  "营业收入": 150,
+                  "月份": "3月"
+                }
+              }
+            ]
+          },
+          {
+            "key": "legend",
+            "valueMap": [
+              {
+                "key": "dim",
+                "valueList": [
+                  {
+                    "key": "0",
+                    "valueMap": [
+                      {
+                        "key": "dimensionName",
+                        "valueString": "情景"
+                      },
+                      {
+                        "key": "element",
+                        "valueJson": [
+                          "62",
+                          "61"
+                        ]
+                      },
+                      {
+                        "key": "elementAssistName",
+                        "valueJson": [
+                          "实际收入",
+                          "预算目标"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "xAxis",
+            "valueMap": [
+              {
+                "key": "dim",
+                "valueList": [
+                  {
+                    "key": "0",
+                    "valueMap": [
+                      {
+                        "key": "dimensionName",
+                        "valueString": "月份"
+                      },
+                      {
+                        "key": "element",
+                        "valueJson": [
+                          "1月",
+                          "2月",
+                          "3月"
+                        ]
+                      },
+                      {
+                        "key": "elementAssistName",
+                        "valueJson": [
+                          "1月",
+                          "2月",
+                          "3月"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "yAxis",
+            "valueMap": [
+              {
+                "key": "measure",
+                "valueList": [
+                  {
+                    "key": "0",
+                    "valueMap": [
+                      {
+                        "key": "measureName",
+                        "valueString": "营业收入"
+                      },
+                      {
+                        "key": "measureUnit",
+                        "valueString": "万元"
+                      },
+                      {
+                        "key": "decimal",
+                        "valueNumber": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

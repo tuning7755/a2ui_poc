@@ -1,0 +1,493 @@
+{
+  "components": {
+    "Column": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "children": {
+          "type": "object",
+          "description": "子组件 ID 列表，支持显式列表格式",
+          "default": {},
+          "additionalProperties": false,
+          "properties": {
+            "explicitList": {
+              "type": "array",
+              "description": "按顺序排列的子组件 ID 数组",
+              "default": [],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "style": {
+          "type": "object",
+          "description": "容器样式对象，支持 CSS 属性",
+          "default": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "16px",
+            "width": "100%"
+          }
+        },
+        "dataBinding": {
+          "type": "object",
+          "description": "动态数据绑定路径配置",
+          "default": {},
+          "additionalProperties": false,
+          "properties": {
+            "style": {
+              "type": "string",
+              "description": "从 dataModel 获取样式的路径，如 'column/style'"
+            }
+          }
+        }
+      },
+      "x-meta": {
+        "componentName": "Column",
+        "displayName": "纵向布局容器",
+        "description": "用于垂直排列子组件的布局容器，支持 Flexbox 纵向布局",
+        "type": "base",
+        "category": "layout",
+        "frontendPath": "src/components/dynamic/Column.vue",
+        "icon": "column-layout",
+        "children": true,
+        "allowedChildren": [
+          "Title",
+          "Card",
+          "Column",
+          "CustomChart"
+        ],
+        "events": [],
+        "slots": [
+          {
+            "slotName": "default",
+            "description": "默认插槽，用于渲染子组件"
+          }
+        ]
+      }
+    },
+    "Title": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "number",
+          "description": "HTML h1-h6 标签级别，1 为最大标题",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "default": 1
+        },
+        "dataBinding": {
+          "type": "object",
+          "description": "动态数据绑定路径配置",
+          "default": {},
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "从 dataModel 获取标题文本的路径"
+            },
+            "style": {
+              "type": "string",
+              "description": "从 dataModel 获取样式的路径,里面可以是'width: 90%; margin: 0 auto; padding: 20px; border-radius: 8px; border: 1px solid red; box-shadow: 0 2px 12px rgba(0,0,0,0.1)'这样的样式"
+            }
+          }
+        }
+      },
+      "x-meta": {
+        "componentName": "Title",
+        "displayName": "标题组件",
+        "description": "用于显示页面或模块标题，支持 1-6 级标题",
+        "type": "base",
+        "category": "display",
+        "frontendPath": "src/components/dynamic/Title.vue",
+        "icon": "text-title",
+        "children": false,
+        "events": [],
+        "slots": []
+      }
+    },
+    "Card": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "children": {
+          "type": "array",
+          "description": "卡片内包含的子组件 ID 数组",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
+        },
+        "dataBinding": {
+          "type": "object",
+          "description": "动态数据绑定路径配置",
+          "default": {},
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "从 dataModel 获取标题的路径"
+            },
+            "style": {
+              "type": "string",
+              "description": "从 dataModel 获取样式的 CSS 字符串路径,从 dataModel 获取样式的路径,里面可以是'width: 90%; margin: 0 auto; padding: 20px; border-radius: 8px; border: 1px solid red; box-shadow: 0 2px 12px rgba(0,0,0,0.1)'这样的样式"
+            }
+          }
+        }
+      },
+      "x-meta": {
+        "componentName": "Card",
+        "displayName": "卡片容器",
+        "description": "用于包裹内容区域的卡片容器，支持标题、样式和数据绑定",
+        "type": "base",
+        "category": "layout",
+        "frontendPath": "src/components/dynamic/Card.vue",
+        "icon": "card-container",
+        "children": true,
+        "allowedChildren": [
+          "CustomChart",
+          "Title",
+          "Column",
+          "Card"
+        ],
+        "events": [],
+        "slots": [
+          {
+            "slotName": "default",
+            "description": "默认插槽，用于渲染卡片内容"
+          }
+        ]
+      }
+    },
+    "CustomChart": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "chartType": {
+          "type": "string",
+          "description": "图表类型标识，如 line、bar 等",
+          "enum": [
+            "line",
+            "bar"
+          ],
+          "default": "line"
+        },
+        "option": {
+          "type": "object",
+          "description": "ECharts 配置对象，包含 xAxis、yAxis、series 等",
+          "default": {
+            "xAxis": {},
+            "yAxis": {},
+            "series": []
+          },
+          "additionalProperties": false,
+          "properties": {
+            "xAxis": {
+              "type": "object",
+              "description": "X 轴配置对象",
+              "default": {}
+            },
+            "yAxis": {
+              "type": "object",
+              "description": "Y 轴配置对象",
+              "default": {}
+            },
+            "series": {
+              "type": "array",
+              "description": "图表系列数据配置数组",
+              "default": [],
+              "items": {
+                "type": "string"
+              }
+            },
+            "title": {
+              "type": "object",
+              "description": "图表标题配置对象",
+              "default": {}
+            },
+            "tooltip": {
+              "type": "object",
+              "description": "鼠标悬停提示框配置",
+              "default": {}
+            },
+            "legend": {
+              "type": "object",
+              "description": "图例配置对象",
+              "default": {}
+            }
+          }
+        },
+        "smooth": {
+          "type": "boolean",
+          "description": "折线图是否使用平滑曲线",
+          "default": false
+        },
+        "showLegend": {
+          "type": "boolean",
+          "description": "是否显示图例",
+          "default": true
+        },
+        "style": {
+          "type": "object",
+          "description": "图表容器样式对象,从 dataModel 获取样式的路径,里面可以是'width: 90%; margin: 0 auto; padding: 20px; border-radius: 8px; border: 1px solid red; box-shadow: 0 2px 12px rgba(0,0,0,0.1)'这样的样式",
+          "default": {
+            "width": "100%",
+            "height": "400px"
+          }
+        },
+        "resultData": {
+          "type": "array",
+          "description": "图表出图相关的数据,例如:[{情景: 62,营业收入: 326.2609689937748,月份: 23},{情景: 62,营业收入: 422.0,月份: 22}]",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "dataPath": {
+                "type": "string",
+                "description": "从 dataModel 获取结果数据的路径，如 'custom-chart/resultData'"
+              }
+            }
+          }
+        },
+        "legend": {
+          "type": "object",
+          "description": "图例配置对象，控制图例的显示位置、样式及维度数据",
+          "default": {
+            "show": true,
+            "orient": "horizontal",
+            "position": "top"
+          },
+          "additionalProperties": false,
+          "properties": {
+            "dim": {
+              "type": "array",
+              "description": "图例维度数据数组，包含系列名称、元素等信息",
+              "default": [],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "dimensionName": {
+                    "type": "string",
+                    "description": "维度字段名称，如'情景'"
+                  },
+                  "element": {
+                    "type": "string",
+                    "description": "维度元素值数组，如['预算数', '实际数']",
+                    "default": "[]"
+                  },
+                  "elementAssistName": {
+                    "type": "string",
+                    "description": "维度元素辅助名称数组，如['预算', '实际']",
+                    "default": "[]"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xAxis": {
+          "type": "object",
+          "description": "X 轴配置对象，支持类别轴、数值轴、时间轴等类型",
+          "default": {
+            "type": "category",
+            "show": true,
+            "name": ""
+          },
+          "additionalProperties": false,
+          "properties": {
+            "dim": {
+              "type": "array",
+              "description": "X 轴维度数据数组，包含维度名称、元素列表等",
+              "default": [],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "dimensionName": {
+                    "type": "string",
+                    "description": "维度字段名称，如'月份'"
+                  },
+                  "element": {
+                    "type": "string",
+                    "description": "维度元素值数组，如['1 月', '2 月', '3 月']",
+                    "default": "[]"
+                  },
+                  "elementAssistName": {
+                    "type": "string",
+                    "description": "维度元素辅助名称数组",
+                    "default": "[]"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "yAxis": {
+          "type": "object",
+          "description": "Y 轴配置对象",
+          "default": {
+            "type": "value",
+            "show": true,
+            "name": ""
+          },
+          "additionalProperties": false,
+          "properties": {
+            "measure": {
+              "type": "array",
+              "description": "Y 轴度量数据数组，包含度量名称等信息",
+              "default": [],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "measureName": {
+                    "type": "string",
+                    "description": "度量字段名称，如'营业收入'"
+                  },
+                  "measureUnit": {
+                    "type": "string",
+                    "description": "度量单位，如'万元'"
+                  },
+                  "decimal": {
+                    "type": "number",
+                    "description": "数值保留小数位数",
+                    "default": 2
+                  }
+                }
+              }
+            }
+          }
+        },
+        "dataBinding": {
+          "type": "object",
+          "description": "动态数据绑定路径配置",
+          "additionalProperties": false,
+          "properties": {
+            "resultData": {
+              "type": "array",
+              "description": "从 dataModel 获取数据的路径,如 'custom-chart/resultData'",
+              "items": {
+                "type": "string"
+              }
+            },
+            "legend": {
+              "type": "array",
+              "description": "从 dataModel 获取样式的路径，如 'custom-chart/legend/dim'",
+              "items": {
+                "type": "string"
+              }
+            },
+            "xAxis": {
+              "type": "array",
+              "description": "从 dataModel 获取数据的路径,如 'custom-chart/xAxis/dim'",
+              "items": {
+                "type": "string"
+              }
+            },
+            "yAxis": {
+              "type": "array",
+              "description": "从 dataModel 获取样式的路径，如 'custom-chart/yAxis/dim'",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "resultData",
+            "xAxis"
+          ]
+        },
+        "action": {
+          "type": "object",
+          "description": "图表交互动作配置，如点击事件",
+          "default": {},
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "动作标识名称，如 chartClick"
+            },
+            "context": {
+              "type": "array",
+              "description": "动作执行的上下文参数",
+              "default": [],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "上下文参数键名"
+                  },
+                  "value": {
+                    "type": "object",
+                    "description": "上下文参数值对象",
+                    "additionalProperties": false,
+                    "properties": {
+                      "literalString": {
+                        "type": "string",
+                        "description": "字面量字符串值"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            }
+          },
+          "required": [
+            "name"
+          ]
+        }
+      },
+      "required": [
+        "option",
+        "dataBinding"
+      ],
+      "x-meta": {
+        "componentName": "CustomChart",
+        "displayName": "自定义图表",
+        "description": "基于 ECharts 的自定义图表组件，支持折线图、柱状图两种图表类型",
+        "type": "custom",
+        "category": "visualization",
+        "frontendPath": "src/components/dynamic/CustomChart.vue",
+        "icon": "chart-line",
+        "children": false,
+        "events": [
+          {
+            "eventName": "chartClick",
+            "description": "图表点击事件",
+            "payload": {
+              "type": "object",
+              "properties": {
+                "dataPoint": {
+                  "type": "object",
+                  "description": "点击的数据点信息"
+                },
+                "seriesName": {
+                  "type": "string",
+                  "description": "点击的系列名称"
+                }
+              }
+            }
+          }
+        ],
+        "slots": []
+      }
+    }
+  },
+  "styles": {}
+}

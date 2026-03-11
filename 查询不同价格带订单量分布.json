@@ -1,0 +1,368 @@
+{
+  "query": "查询不同价格带订单量分布",
+  "tool_data": {
+    "page_title": "2025 销售分析",
+    "card_title": "价格带订单量分布",
+    "unit": "单",
+    "metric": "orders_by_price_band",
+    "metric_label": "订单量",
+    "actual_label": "订单量",
+    "bands": [
+      "0-50元",
+      "50-100元",
+      "100-150元",
+      "150-200元",
+      "200-300元",
+      "300元以上"
+    ],
+    "actual": [
+      420,
+      680,
+      910,
+      760,
+      430,
+      180
+    ],
+    "query": "查询不同价格带订单量分布"
+  },
+  "a2ui": {
+    "beginRendering": {
+      "surfaceId": "default",
+      "root": "root-column",
+      "styles": {
+        "primaryColor": "#FF0000",
+        "font": "Roboto"
+      }
+    },
+    "surfaceUpdate": {
+      "surfaceId": "default",
+      "components": [
+        {
+          "id": "root-column",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "page-title",
+                  "card-container"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "page-title",
+          "component": {
+            "Title": {
+              "level": 1,
+              "dataBinding": {
+                "title": "/page-title/title",
+                "style": "/page-title/style"
+              }
+            }
+          }
+        },
+        {
+          "id": "card-container",
+          "component": {
+            "Card": {
+              "dataBinding": {
+                "title": "/card-container/title",
+                "style": "/card-container/style"
+              },
+              "children": [
+                "custom-chart"
+              ]
+            }
+          }
+        },
+        {
+          "id": "custom-chart",
+          "component": {
+            "CustomChart": {
+              "chartType": "bar",
+              "option": {
+                "xAxis": {
+                  "type": "category"
+                },
+                "yAxis": {
+                  "type": "value",
+                  "name": "订单量 (单)"
+                },
+                "series": [],
+                "title": {},
+                "tooltip": {},
+                "legend": {}
+              },
+              "smooth": false,
+              "showLegend": false,
+              "style": {
+                "width": "100%",
+                "height": "400px"
+              },
+              "dataBinding": {
+                "resultData": [
+                  "/custom-chart/resultData"
+                ],
+                "legend": [
+                  "/custom-chart/legend/dim"
+                ],
+                "xAxis": [
+                  "/custom-chart/xAxis/dim"
+                ],
+                "yAxis": [
+                  "/custom-chart/yAxis/measure"
+                ]
+              },
+              "action": {
+                "name": "chartClick",
+                "context": [
+                  {
+                    "key": "chartType",
+                    "value": {
+                      "literalString": "bar"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "dataModelUpdate": {
+      "surfaceId": "default",
+      "path": "/",
+      "contents": [
+        {
+          "key": "page-title",
+          "valueMap": [
+            {
+              "key": "title",
+              "valueString": "2025 销售分析"
+            },
+            {
+              "key": "style",
+              "valueString": "margin: 10px auto; width: 90%"
+            }
+          ]
+        },
+        {
+          "key": "card-container",
+          "valueMap": [
+            {
+              "key": "title",
+              "valueString": "价格带订单量分布"
+            },
+            {
+              "key": "style",
+              "valueString": "width: 90%; margin: 0 auto; padding: 20px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 12px rgba(0,0,0,0.1)"
+            }
+          ]
+        },
+        {
+          "key": "custom-chart",
+          "valueMap": [
+            {
+              "key": "chartType",
+              "valueString": "bar"
+            },
+            {
+              "key": "option",
+              "valueMap": [
+                {
+                  "key": "xAxis",
+                  "valueMap": [
+                    {
+                      "key": "type",
+                      "valueString": "category"
+                    }
+                  ]
+                },
+                {
+                  "key": "yAxis",
+                  "valueMap": [
+                    {
+                      "key": "type",
+                      "valueString": "value"
+                    },
+                    {
+                      "key": "name",
+                      "valueString": "订单量 (单)"
+                    }
+                  ]
+                },
+                {
+                  "key": "series",
+                  "valueList": []
+                },
+                {
+                  "key": "title",
+                  "valueMap": [
+                    {
+                      "key": "text",
+                      "valueString": "订单量"
+                    }
+                  ]
+                },
+                {
+                  "key": "tooltip",
+                  "valueMap": []
+                },
+                {
+                  "key": "legend",
+                  "valueMap": []
+                }
+              ]
+            },
+            {
+              "key": "style",
+              "valueMap": [
+                {
+                  "key": "width",
+                  "valueString": "100%"
+                },
+                {
+                  "key": "height",
+                  "valueString": "400px"
+                }
+              ]
+            },
+            {
+              "key": "resultData",
+              "valueList": [
+                {
+                  "key": "0",
+                  "valueJson": {
+                    "价格带": "0-50 元",
+                    "订单量": 420
+                  }
+                },
+                {
+                  "key": "1",
+                  "valueJson": {
+                    "价格带": "50-100 元",
+                    "订单量": 680
+                  }
+                },
+                {
+                  "key": "2",
+                  "valueJson": {
+                    "价格带": "100-150 元",
+                    "订单量": 910
+                  }
+                },
+                {
+                  "key": "3",
+                  "valueJson": {
+                    "价格带": "150-200 元",
+                    "订单量": 760
+                  }
+                },
+                {
+                  "key": "4",
+                  "valueJson": {
+                    "价格带": "200-300 元",
+                    "订单量": 430
+                  }
+                },
+                {
+                  "key": "5",
+                  "valueJson": {
+                    "价格带": "300 元以上",
+                    "订单量": 180
+                  }
+                }
+              ]
+            },
+            {
+              "key": "legend",
+              "valueMap": [
+                {
+                  "key": "dim",
+                  "valueList": []
+                }
+              ]
+            },
+            {
+              "key": "xAxis",
+              "valueMap": [
+                {
+                  "key": "dim",
+                  "valueList": [
+                    {
+                      "key": "0",
+                      "valueMap": [
+                        {
+                          "key": "dimensionName",
+                          "valueString": "价格带"
+                        },
+                        {
+                          "key": "element",
+                          "valueJson": [
+                            "0-50 元",
+                            "50-100 元",
+                            "100-150 元",
+                            "150-200 元",
+                            "200-300 元",
+                            "300 元以上"
+                          ]
+                        },
+                        {
+                          "key": "elementAssistName",
+                          "valueJson": [
+                            "0-50 元",
+                            "50-100 元",
+                            "100-150 元",
+                            "150-200 元",
+                            "200-300 元",
+                            "300 元以上"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "yAxis",
+              "valueMap": [
+                {
+                  "key": "measure",
+                  "valueList": [
+                    {
+                      "key": "0",
+                      "valueMap": [
+                        {
+                          "key": "measureName",
+                          "valueString": "订单量"
+                        },
+                        {
+                          "key": "measureUnit",
+                          "valueString": "单"
+                        },
+                        {
+                          "key": "decimal",
+                          "valueNumber": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "meta": {
+    "tool_called": true,
+    "retry_count": 0,
+    "langsmith_enabled": true,
+    "model_provider": "qwen_direct",
+    "fallback_configured": false,
+    "request_id": "4800f067-3356-4e12-baa1-1ad1cd69ad75"
+  }
+}

@@ -1,0 +1,26 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: a2ui-zhida:latest
+    container_name: a2ui-zhida
+    working_dir: /app
+    env_file:
+      - .env
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./:/app
+    command: >
+      uvicorn app:app
+      --host 0.0.0.0
+      --port 8089
+      --reload
+    networks:
+      - a2ui_net
+
+networks:
+  a2ui_net:
+    external: true
+    name: a2ui-zhida_default

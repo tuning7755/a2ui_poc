@@ -1,0 +1,581 @@
+{
+  "query": "查询月度订单量趋势",
+  "tool_data": {
+    "page_title": "2025 经营核心指标",
+    "card_title": "月度订单量趋势（Actual vs Budget）",
+    "unit": "单",
+    "metric": "order_count",
+    "metric_label": "订单量",
+    "actual_label": "实际订单量",
+    "budget_label": "预算订单量",
+    "months": [
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ],
+    "actual": [
+      820,
+      860,
+      910,
+      960,
+      1020,
+      1080,
+      1110,
+      1150,
+      1210,
+      1280,
+      1340,
+      1420
+    ],
+    "budget": [
+      800,
+      840,
+      880,
+      930,
+      980,
+      1030,
+      1070,
+      1110,
+      1170,
+      1230,
+      1290,
+      1360
+    ],
+    "query": "查询月度订单量趋势"
+  },
+  "a2ui": {
+    "beginRendering": {
+      "surfaceId": "default",
+      "root": "root-column",
+      "styles": {
+        "primaryColor": "#FF0000",
+        "font": "Roboto"
+      }
+    },
+    "surfaceUpdate": {
+      "surfaceId": "default",
+      "components": [
+        {
+          "id": "root-column",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "page-title",
+                  "card-container"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "page-title",
+          "component": {
+            "Title": {
+              "level": 1,
+              "dataBinding": {
+                "title": "/page-title/title",
+                "style": "/page-title/style"
+              }
+            }
+          }
+        },
+        {
+          "id": "card-container",
+          "component": {
+            "Card": {
+              "dataBinding": {
+                "title": "/card-container/title",
+                "style": "/card-container/style"
+              },
+              "children": [
+                "custom-chart"
+              ]
+            }
+          }
+        },
+        {
+          "id": "custom-chart",
+          "component": {
+            "CustomChart": {
+              "chartType": "line",
+              "option": {
+                "xAxis": {
+                  "type": "category"
+                },
+                "yAxis": {
+                  "type": "value",
+                  "name": "订单量 (单)"
+                },
+                "series": [],
+                "title": {},
+                "tooltip": {},
+                "legend": {}
+              },
+              "smooth": true,
+              "showLegend": true,
+              "style": {
+                "width": "800px",
+                "height": "400px"
+              },
+              "dataBinding": {
+                "resultData": [
+                  "/custom-chart/resultData"
+                ],
+                "legend": [
+                  "/custom-chart/legend/dim"
+                ],
+                "xAxis": [
+                  "/custom-chart/xAxis/dim"
+                ],
+                "yAxis": [
+                  "/custom-chart/yAxis/measure"
+                ]
+              },
+              "action": {
+                "name": "chartClick",
+                "context": [
+                  {
+                    "key": "chartType",
+                    "value": {
+                      "literalString": "line"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "dataModelUpdate": {
+      "surfaceId": "default",
+      "path": "/",
+      "contents": [
+        {
+          "key": "page-title",
+          "valueMap": [
+            {
+              "key": "title",
+              "valueString": "2025 经营核心指标"
+            },
+            {
+              "key": "style",
+              "valueString": "margin: 10px auto; width: 90%"
+            }
+          ]
+        },
+        {
+          "key": "card-container",
+          "valueMap": [
+            {
+              "key": "title",
+              "valueString": "月度订单量趋势（Actual vs Budget）"
+            },
+            {
+              "key": "style",
+              "valueString": "width: 90%; margin: 0 auto; padding: 20px; border-radius: 8px; border: 1px solid red; box-shadow: 0 2px 12px rgba(0,0,0,0.1)"
+            }
+          ]
+        },
+        {
+          "key": "custom-chart",
+          "valueMap": [
+            {
+              "key": "chartType",
+              "valueString": "line"
+            },
+            {
+              "key": "option",
+              "valueMap": [
+                {
+                  "key": "xAxis",
+                  "valueMap": [
+                    {
+                      "key": "type",
+                      "valueString": "category"
+                    }
+                  ]
+                },
+                {
+                  "key": "yAxis",
+                  "valueMap": [
+                    {
+                      "key": "type",
+                      "valueString": "value"
+                    },
+                    {
+                      "key": "name",
+                      "valueString": "订单量 (单)"
+                    }
+                  ]
+                },
+                {
+                  "key": "series",
+                  "valueList": []
+                },
+                {
+                  "key": "title",
+                  "valueMap": [
+                    {
+                      "key": "text",
+                      "valueString": "订单量"
+                    }
+                  ]
+                },
+                {
+                  "key": "tooltip",
+                  "valueMap": []
+                },
+                {
+                  "key": "legend",
+                  "valueMap": []
+                }
+              ]
+            },
+            {
+              "key": "style",
+              "valueMap": [
+                {
+                  "key": "width",
+                  "valueString": "100%"
+                },
+                {
+                  "key": "height",
+                  "valueString": "400px"
+                }
+              ]
+            },
+            {
+              "key": "resultData",
+              "valueList": [
+                {
+                  "key": "0",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 820,
+                    "月份": "1 月"
+                  }
+                },
+                {
+                  "key": "1",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 800,
+                    "月份": "1 月"
+                  }
+                },
+                {
+                  "key": "2",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 860,
+                    "月份": "2 月"
+                  }
+                },
+                {
+                  "key": "3",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 840,
+                    "月份": "2 月"
+                  }
+                },
+                {
+                  "key": "4",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 910,
+                    "月份": "3 月"
+                  }
+                },
+                {
+                  "key": "5",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 880,
+                    "月份": "3 月"
+                  }
+                },
+                {
+                  "key": "6",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 960,
+                    "月份": "4 月"
+                  }
+                },
+                {
+                  "key": "7",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 930,
+                    "月份": "4 月"
+                  }
+                },
+                {
+                  "key": "8",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 1020,
+                    "月份": "5 月"
+                  }
+                },
+                {
+                  "key": "9",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 980,
+                    "月份": "5 月"
+                  }
+                },
+                {
+                  "key": "10",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 1080,
+                    "月份": "6 月"
+                  }
+                },
+                {
+                  "key": "11",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 1030,
+                    "月份": "6 月"
+                  }
+                },
+                {
+                  "key": "12",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 1110,
+                    "月份": "7 月"
+                  }
+                },
+                {
+                  "key": "13",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 1070,
+                    "月份": "7 月"
+                  }
+                },
+                {
+                  "key": "14",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 1150,
+                    "月份": "8 月"
+                  }
+                },
+                {
+                  "key": "15",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 1110,
+                    "月份": "8 月"
+                  }
+                },
+                {
+                  "key": "16",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 1210,
+                    "月份": "9 月"
+                  }
+                },
+                {
+                  "key": "17",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 1170,
+                    "月份": "9 月"
+                  }
+                },
+                {
+                  "key": "18",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 1280,
+                    "月份": "10 月"
+                  }
+                },
+                {
+                  "key": "19",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 1230,
+                    "月份": "10 月"
+                  }
+                },
+                {
+                  "key": "20",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 1340,
+                    "月份": "11 月"
+                  }
+                },
+                {
+                  "key": "21",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 1290,
+                    "月份": "11 月"
+                  }
+                },
+                {
+                  "key": "22",
+                  "valueJson": {
+                    "情景": "actual",
+                    "订单量": 1420,
+                    "月份": "12 月"
+                  }
+                },
+                {
+                  "key": "23",
+                  "valueJson": {
+                    "情景": "budget",
+                    "订单量": 1360,
+                    "月份": "12 月"
+                  }
+                }
+              ]
+            },
+            {
+              "key": "legend",
+              "valueMap": [
+                {
+                  "key": "dim",
+                  "valueList": [
+                    {
+                      "key": "0",
+                      "valueMap": [
+                        {
+                          "key": "dimensionName",
+                          "valueString": "情景"
+                        },
+                        {
+                          "key": "element",
+                          "valueJson": [
+                            "actual",
+                            "budget"
+                          ]
+                        },
+                        {
+                          "key": "elementAssistName",
+                          "valueJson": [
+                            "实际订单量",
+                            "预算订单量"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "xAxis",
+              "valueMap": [
+                {
+                  "key": "dim",
+                  "valueList": [
+                    {
+                      "key": "0",
+                      "valueMap": [
+                        {
+                          "key": "dimensionName",
+                          "valueString": "月份"
+                        },
+                        {
+                          "key": "element",
+                          "valueJson": [
+                            "1 月",
+                            "2 月",
+                            "3 月",
+                            "4 月",
+                            "5 月",
+                            "6 月",
+                            "7 月",
+                            "8 月",
+                            "9 月",
+                            "10 月",
+                            "11 月",
+                            "12 月"
+                          ]
+                        },
+                        {
+                          "key": "elementAssistName",
+                          "valueJson": [
+                            "1 月",
+                            "2 月",
+                            "3 月",
+                            "4 月",
+                            "5 月",
+                            "6 月",
+                            "7 月",
+                            "8 月",
+                            "9 月",
+                            "10 月",
+                            "11 月",
+                            "12 月"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "yAxis",
+              "valueMap": [
+                {
+                  "key": "measure",
+                  "valueList": [
+                    {
+                      "key": "0",
+                      "valueMap": [
+                        {
+                          "key": "measureName",
+                          "valueString": "订单量"
+                        },
+                        {
+                          "key": "measureUnit",
+                          "valueString": "单"
+                        },
+                        {
+                          "key": "decimal",
+                          "valueNumber": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "meta": {
+    "tool_called": true,
+    "retry_count": 0,
+    "langsmith_enabled": true,
+    "model_provider": "qwen_direct",
+    "fallback_configured": false,
+    "request_id": "ec266e17-5e3e-4f0e-9e5c-8677348c050c"
+  }
+}
